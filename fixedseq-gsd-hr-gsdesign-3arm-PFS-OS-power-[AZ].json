@@ -1,0 +1,357 @@
+{
+  "trial": {
+    "label": "fixed sequence",
+    "alpha": {
+      "value": 0.05,
+      "sidedness": 2
+    },
+    "arms": {
+      "arm1": {
+        "role": "control",
+        "component_of": null,
+        "randomization_weight": 1
+      },
+      "arm2": {
+        "role": "experimental",
+        "component_of": null,
+        "randomization_weight": 1
+      },
+      "arm3": {
+        "role": "component",
+        "component_of": "arm2",
+        "randomization_weight": null
+      }
+    },
+    "endpoints": {
+      "PFS": {
+        "type": "time-to-event",
+        "effect_measure": "hazard-ratio",
+        "benefit_direction": "lower",
+        "test": {
+          "method": "logrank",
+          "effect_estimator": null,
+          "alternative": "two-sided",
+          "stratified": false,
+          "equal_variance": null,
+          "continuity_correction": null
+        },
+        "distributions": {
+          "arm1": null,
+          "arm2": null,
+          "arm3": null
+        },
+        "effects": {
+          "arm1": null,
+          "arm2": {
+            "vs": "arm1",
+            "cut": {
+              "by": "follow-up-time",
+              "at": null
+            },
+            "value": 0.65
+          },
+          "arm3": {
+            "vs": "arm1",
+            "cut": {
+              "by": "event-count",
+              "at": [
+                0,
+                97
+              ]
+            },
+            "value": [
+              1,
+              0.7660780471964137
+            ]
+          }
+        }
+      },
+      "OS": {
+        "type": "time-to-event",
+        "effect_measure": "hazard-ratio",
+        "benefit_direction": "lower",
+        "test": {
+          "method": "logrank",
+          "effect_estimator": null,
+          "alternative": "two-sided",
+          "stratified": false,
+          "equal_variance": null,
+          "continuity_correction": null
+        },
+        "distributions": {
+          "arm1": null,
+          "arm2": null,
+          "arm3": null
+        },
+        "effects": {
+          "arm1": null,
+          "arm2": {
+            "vs": "arm1",
+            "cut": {
+              "by": "follow-up-time",
+              "at": null
+            },
+            "value": 0.70
+          },
+          "arm3": null
+        }
+      }
+    },
+    "enrollment": {
+      "model": null,
+      "n_accrual_max": null,
+      "period": null,
+      "k": null,
+      "duration": null,
+      "rate": null,
+      "cumulative": null
+    },
+    "dropout": {
+      "model": null,
+      "probability": null,
+      "window": null,
+      "applies_to": null
+    },
+    "strata": {
+      "enabled": false,
+      "definitions": null
+    },
+    "sim": {
+      "enabled": false,
+      "n_sim": null,
+      "seed": null,
+      "param_grid": null,
+      "outcome_models": null,
+      "empirical_quantities": null
+    }
+  },
+  "mtp": {
+    "procedure": {
+      "type": "graphical",
+      "strategy": "fixed-sequence",
+      "epsilon": null
+    },
+    "intersection_tests": {
+      "H123": {
+        "hypotheses": [
+          "H1",
+          "H2",
+          "H3"
+        ],
+        "type": "weighted-bonferroni",
+        "correlation": null
+      },
+      "H12": {
+        "hypotheses": [
+          "H1",
+          "H2"
+        ],
+        "type": "weighted-bonferroni",
+        "correlation": null
+      },
+      "H13": {
+        "hypotheses": [
+          "H1",
+          "H3"
+        ],
+        "type": "weighted-bonferroni",
+        "correlation": null
+      },
+      "H23": {
+        "hypotheses": [
+          "H2",
+          "H3"
+        ],
+        "type": "weighted-bonferroni",
+        "correlation": null
+      }
+    },
+    "nodes": {
+      "H1": {
+        "label": "Arm 2 vs 1",
+        "intervention": "arm2",
+        "comparator": "arm1",
+        "endpoint": "PFS",
+        "initial_alpha": 0.04,
+        "test_sides": 2
+      },
+      "H2": {
+        "label": "Arm 2 vs 1",
+        "intervention": "arm2",
+        "comparator": "arm1",
+        "endpoint": "OS",
+        "initial_alpha": 0.01,
+        "test_sides": 2
+      },
+      "H3": {
+        "label": "CoC vs 1",
+        "intervention": "arm3",
+        "comparator": "arm1",
+        "endpoint": "PFS",
+        "initial_alpha": 0,
+        "test_sides": 2
+      }
+    },
+    "edges": [
+      {
+        "from": "H1",
+        "to": "H2",
+        "weight": 1,
+        "on": "reject",
+        "condition": null
+      },
+      {
+        "from": "H2",
+        "to": "H3",
+        "weight": 1,
+        "on": "reject",
+        "condition": null
+      }
+    ]
+  },
+  "gsd": {
+    "H1": {
+      "looks": {
+        "trigger": "event-count",
+        "schedule": {
+          "scale": "count",
+          "values": [
+            264,
+            359
+          ]
+        }
+      },
+      "max_events": 359,
+      "efficacy": {
+        "enabled": true,
+        "type": "alpha-spending",
+        "family": {
+          "fn": "sfLDOF",
+          "param": null,
+          "nominal_values": null
+        },
+        "active_at": [
+          1,
+          2
+        ]
+      },
+      "beta": null,
+      "futility": {
+        "enabled": false,
+        "binding": null,
+        "type": null,
+        "family": {
+          "fn": null,
+          "param": null,
+          "nominal_values": null
+        },
+        "threshold_rule": {
+          "metric": null,
+          "threshold": null,
+          "direction": null
+        },
+        "active_at": null
+      },
+      "approximation": "Schoenfeld",
+      "engine": "gsDesign"
+    },
+    "H2": {
+      "looks": {
+        "trigger": "event-count",
+        "schedule": {
+          "scale": "count",
+          "values": [
+            187,
+            282,
+            392
+          ]
+        }
+      },
+      "max_events": 392,
+      "efficacy": {
+        "enabled": true,
+        "type": "alpha-spending",
+        "family": {
+          "fn": "sfLDOF",
+          "param": null,
+          "nominal_values": null
+        },
+        "active_at": [
+          1,
+          2,
+          3
+        ]
+      },
+      "beta": null,
+      "futility": {
+        "enabled": false,
+        "binding": null,
+        "type": null,
+        "family": {
+          "fn": null,
+          "param": null,
+          "nominal_values": null
+        },
+        "threshold_rule": {
+          "metric": null,
+          "threshold": null,
+          "direction": null
+        },
+        "active_at": null
+      },
+      "approximation": "Schoenfeld",
+      "engine": "gsDesign"
+    },
+    "H3": {
+      "looks": {
+        "trigger": "event-count",
+        "schedule": {
+          "scale": "count",
+          "values": [
+            283,
+            380,
+            438
+          ]
+        }
+      },
+      "max_events": 438,
+      "efficacy": {
+        "enabled": true,
+        "type": "customized",
+        "family": {
+          "fn": "customized",
+          "param": null,
+          "nominal_values": [
+            0.0001,
+            0.0001,
+            null
+          ]
+        },
+        "active_at": [
+          1,
+          2,
+          3
+        ]
+      },
+      "beta": null,
+      "futility": {
+        "enabled": false,
+        "binding": null,
+        "type": null,
+        "family": {
+          "fn": null,
+          "param": null,
+          "nominal_values": null
+        },
+        "threshold_rule": {
+          "metric": null,
+          "threshold": null,
+          "direction": null
+        },
+        "active_at": null
+      },
+      "approximation": "Schoenfeld",
+      "engine": "gsDesign2"
+    }
+  }
+}

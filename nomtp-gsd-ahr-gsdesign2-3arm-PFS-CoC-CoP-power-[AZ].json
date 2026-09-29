@@ -1,0 +1,555 @@
+{
+  "trial": {
+    "label": "Peri-operative primary, CoC, and CoP NPH calculations",
+    "alpha": {
+      "value": 0.05,
+      "sidedness": 2
+    },
+    "arms": {
+      "arm1": {
+        "role": "control",
+        "component_of": null,
+        "randomization_weight": 2
+      },
+      "arm2": {
+        "role": "experimental",
+        "component_of": null,
+        "randomization_weight": 2
+      },
+      "arm3": {
+        "role": "component",
+        "component_of": "arm2",
+        "randomization_weight": 3
+      }
+    },
+    "endpoints": {
+      "PFS_primary": {
+        "type": "time-to-event",
+        "effect_measure": "hazard-ratio",
+        "benefit_direction": "lower",
+        "test": {
+          "method": "logrank",
+          "effect_estimator": null,
+          "alternative": "one-sided",
+          "stratified": false,
+          "equal_variance": null,
+          "continuity_correction": null
+        },
+        "distributions": {
+          "arm1": {
+            "family": "piecewise-exponential",
+            "cut": {
+              "by": "follow-up-time",
+              "at": [
+                0,
+                4,
+                10,
+                34
+              ]
+            },
+            "rate": [
+              0.027,
+              0.027,
+              0.01,
+              0.01
+            ],
+            "median": null,
+            "landmark_time": null,
+            "landmark_value": null,
+            "mean": null,
+            "sd": null,
+            "probability": null
+          },
+          "arm2": null,
+          "arm3": null
+        },
+        "effects": {
+          "arm1": null,
+          "arm2": {
+            "vs": "arm1",
+            "cut": {
+              "by": "follow-up-time",
+              "at": [
+                0,
+                4,
+                10,
+                34
+              ]
+            },
+            "value": [
+              0.9,
+              0.9,
+              0.6,
+              0.6
+            ]
+          },
+          "arm3": null
+        }
+      },
+      "PFS_CoC_assumption_1": {
+        "type": "time-to-event",
+        "effect_measure": "hazard-ratio",
+        "benefit_direction": "lower",
+        "test": {
+          "method": "logrank",
+          "effect_estimator": null,
+          "alternative": "one-sided",
+          "stratified": false,
+          "equal_variance": null,
+          "continuity_correction": null
+        },
+        "distributions": {
+          "arm1": null,
+          "arm2": null,
+          "arm3": {
+            "family": "piecewise-exponential",
+            "cut": {
+              "by": "follow-up-time",
+              "at": [
+                0,
+                4,
+                10,
+                34
+              ]
+            },
+            "rate": [
+              0.027,
+              0.027,
+              0.01,
+              0.01
+            ],
+            "median": null,
+            "landmark_time": null,
+            "landmark_value": null,
+            "mean": null,
+            "sd": null,
+            "probability": null
+          }
+        },
+        "effects": {
+          "arm1": null,
+          "arm2": {
+            "vs": "arm3",
+            "cut": {
+              "by": "follow-up-time",
+              "at": [
+                0,
+                4,
+                10,
+                34
+              ]
+            },
+            "value": [
+              0.9,
+              0.9,
+              0.8,
+              0.8
+            ]
+          },
+          "arm3": null
+        }
+      },
+      "PFS_CoC_assumption_2": {
+        "type": "time-to-event",
+        "effect_measure": "hazard-ratio",
+        "benefit_direction": "lower",
+        "test": {
+          "method": "logrank",
+          "effect_estimator": null,
+          "alternative": "one-sided",
+          "stratified": false,
+          "equal_variance": null,
+          "continuity_correction": null
+        },
+        "distributions": {
+          "arm1": null,
+          "arm2": null,
+          "arm3": {
+            "family": "piecewise-exponential",
+            "cut": {
+              "by": "follow-up-time",
+              "at": [
+                0,
+                4,
+                10,
+                34
+              ]
+            },
+            "rate": [
+              0.027,
+              0.027,
+              0.01,
+              0.01
+            ],
+            "median": null,
+            "landmark_time": null,
+            "landmark_value": null,
+            "mean": null,
+            "sd": null,
+            "probability": null
+          }
+        },
+        "effects": {
+          "arm1": null,
+          "arm2": {
+            "vs": "arm3",
+            "cut": {
+              "by": "follow-up-time",
+              "at": [
+                0,
+                4,
+                10,
+                34
+              ]
+            },
+            "value": [
+              1,
+              1,
+              0.74,
+              0.74
+            ]
+          },
+          "arm3": null
+        }
+      },
+      "PFS_CoP": {
+        "type": "time-to-event",
+        "effect_measure": "hazard-ratio",
+        "benefit_direction": "lower",
+        "test": {
+          "method": "logrank",
+          "effect_estimator": null,
+          "alternative": "one-sided",
+          "stratified": false,
+          "equal_variance": null,
+          "continuity_correction": null
+        },
+        "distributions": {
+          "arm1": null,
+          "arm2": null,
+          "arm3": {
+            "family": "piecewise-exponential",
+            "cut": {
+              "by": "follow-up-time",
+              "at": [
+                0,
+                4,
+                10,
+                34
+              ]
+            },
+            "rate": [
+              0.027,
+              0.027,
+              0.01,
+              0.01
+            ],
+            "median": null,
+            "landmark_time": null,
+            "landmark_value": null,
+            "mean": null,
+            "sd": null,
+            "probability": null
+          }
+        },
+        "effects": {
+          "arm1": null,
+          "arm2": {
+            "vs": "arm3",
+            "cut": {
+              "by": "follow-up-time",
+              "at": [
+                0,
+                4,
+                10,
+                34
+              ]
+            },
+            "value": [
+              1,
+              1,
+              0.688,
+              0.688
+            ]
+          },
+          "arm3": null
+        }
+      }
+    },
+    "enrollment": {
+      "model": "piecewise-rate",
+      "n_accrual_max": null,
+      "period": null,
+      "k": null,
+      "duration": [
+        4,
+        4,
+        4,
+        32
+      ],
+      "rate": [
+        7.894736842105263,
+        15.78947368421053,
+        23.68421052631579,
+        31.57894736842105
+      ],
+      "cumulative": null
+    },
+    "dropout": {
+      "model": "exponential",
+      "probability": 0.15,
+      "window": 12,
+      "applies_to": [
+        "PFS_primary"
+      ]
+    },
+    "strata": {
+      "enabled": false,
+      "definitions": null
+    },
+    "sim": {
+      "enabled": false,
+      "n_sim": null,
+      "seed": null,
+      "param_grid": null,
+      "outcome_models": null,
+      "empirical_quantities": null
+    }
+  },
+  "mtp": {
+    "procedure": {
+      "type": "none",
+      "strategy": null,
+      "epsilon": null
+    },
+    "intersection_tests": null,
+    "nodes": {
+      "H1": {
+        "label": "Primary PFS comparison",
+        "intervention": "arm2",
+        "comparator": "arm1",
+        "endpoint": "PFS_primary",
+        "initial_alpha": 0.05,
+        "test_sides": 2
+      },
+      "H2": {
+        "label": "Loose-alpha CoC assumption 1",
+        "intervention": "arm2",
+        "comparator": "arm3",
+        "endpoint": "PFS_CoC_assumption_1",
+        "initial_alpha": 0.2,
+        "test_sides": 2
+      },
+      "H3": {
+        "label": "Loose-alpha CoC assumption 2",
+        "intervention": "arm2",
+        "comparator": "arm3",
+        "endpoint": "PFS_CoC_assumption_2",
+        "initial_alpha": 0.2,
+        "test_sides": 2
+      },
+      "H4": {
+        "label": "Loose-alpha CoP comparison",
+        "intervention": "arm2",
+        "comparator": "arm3",
+        "endpoint": "PFS_CoP",
+        "initial_alpha": 0.2,
+        "test_sides": 2
+      }
+    },
+    "edges": []
+  },
+  "gsd": {
+    "H1": {
+      "looks": {
+        "trigger": "calendar-time",
+        "schedule": {
+          "scale": "calendar-time",
+          "values": [
+            27,
+            44,
+            55,
+            66
+          ]
+        }
+      },
+      "max_events": 396.1,
+      "efficacy": {
+        "enabled": true,
+        "type": "alpha-spending",
+        "family": {
+          "fn": "sfLDOF",
+          "param": null,
+          "nominal_values": null
+        },
+        "active_at": [
+          2,
+          3,
+          4
+        ]
+      },
+      "beta": 0.1,
+      "futility": {
+        "enabled": true,
+        "binding": false,
+        "type": "beta-spending",
+        "family": {
+          "fn": "sfHSD",
+          "param": 3,
+          "nominal_values": null
+        },
+        "threshold_rule": {
+          "metric": null,
+          "threshold": null,
+          "direction": null
+        },
+        "active_at": [
+          1
+        ]
+      },
+      "approximation": "Schoenfeld",
+      "engine": "gsDesign2"
+    },
+    "H2": {
+      "looks": {
+        "trigger": "calendar-time",
+        "schedule": {
+          "scale": "calendar-time",
+          "values": [
+            44,
+            55,
+            66
+          ]
+        }
+      },
+      "max_events": 417.6,
+      "efficacy": {
+        "enabled": true,
+        "type": "alpha-spending",
+        "family": {
+          "fn": "sfLDOF",
+          "param": null,
+          "nominal_values": null
+        },
+        "active_at": [
+          1,
+          2,
+          3
+        ]
+      },
+      "beta": null,
+      "futility": {
+        "enabled": false,
+        "binding": null,
+        "type": null,
+        "family": {
+          "fn": null,
+          "param": null,
+          "nominal_values": null
+        },
+        "threshold_rule": {
+          "metric": null,
+          "threshold": null,
+          "direction": null
+        },
+        "active_at": null
+      },
+      "approximation": "Schoenfeld",
+      "engine": "gsDesign2"
+    },
+    "H3": {
+      "looks": {
+        "trigger": "calendar-time",
+        "schedule": {
+          "scale": "calendar-time",
+          "values": [
+            44,
+            55,
+            66
+          ]
+        }
+      },
+      "max_events": 421.7,
+      "efficacy": {
+        "enabled": true,
+        "type": "alpha-spending",
+        "family": {
+          "fn": "sfLDOF",
+          "param": null,
+          "nominal_values": null
+        },
+        "active_at": [
+          1,
+          2,
+          3
+        ]
+      },
+      "beta": null,
+      "futility": {
+        "enabled": false,
+        "binding": null,
+        "type": null,
+        "family": {
+          "fn": null,
+          "param": null,
+          "nominal_values": null
+        },
+        "threshold_rule": {
+          "metric": null,
+          "threshold": null,
+          "direction": null
+        },
+        "active_at": null
+      },
+      "approximation": "Schoenfeld",
+      "engine": "gsDesign2"
+    },
+    "H4": {
+      "looks": {
+        "trigger": "calendar-time",
+        "schedule": {
+          "scale": "calendar-time",
+          "values": [
+            44,
+            55,
+            66
+          ]
+        }
+      },
+      "max_events": 418.4,
+      "efficacy": {
+        "enabled": true,
+        "type": "alpha-spending",
+        "family": {
+          "fn": "sfLDOF",
+          "param": null,
+          "nominal_values": null
+        },
+        "active_at": [
+          1,
+          2,
+          3
+        ]
+      },
+      "beta": null,
+      "futility": {
+        "enabled": false,
+        "binding": null,
+        "type": null,
+        "family": {
+          "fn": null,
+          "param": null,
+          "nominal_values": null
+        },
+        "threshold_rule": {
+          "metric": null,
+          "threshold": null,
+          "direction": null
+        },
+        "active_at": null
+      },
+      "approximation": "Schoenfeld",
+      "engine": "gsDesign2"
+    }
+  }
+}

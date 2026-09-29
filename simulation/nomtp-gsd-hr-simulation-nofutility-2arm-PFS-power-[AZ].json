@@ -1,0 +1,252 @@
+{
+  "trial": {
+    "label": "Two-arm PFS simulation without futility",
+    "alpha": {
+      "value": 0.04,
+      "sidedness": 2
+    },
+    "arms": {
+      "control": {
+        "role": "control",
+        "component_of": null,
+        "randomization_weight": 1
+      },
+      "experimental": {
+        "role": "experimental",
+        "component_of": null,
+        "randomization_weight": 1
+      }
+    },
+    "endpoints": {
+      "PFS": {
+        "type": "time-to-event",
+        "effect_measure": "hazard-ratio",
+        "benefit_direction": "lower",
+        "test": {
+          "method": "logrank",
+          "effect_estimator": "coxph",
+          "alternative": "two-sided",
+          "stratified": false,
+          "equal_variance": null,
+          "continuity_correction": null
+        },
+        "distributions": {
+          "control": null,
+          "experimental": null
+        },
+        "effects": {
+          "control": null,
+          "experimental": {
+            "vs": "control",
+            "cut": {
+              "by": "follow-up-time",
+              "at": [
+                0,
+                6
+              ]
+            },
+            "value": [
+              0.65,
+              0.65
+            ]
+          }
+        }
+      }
+    },
+    "enrollment": {
+      "model": "power",
+      "n_accrual_max": 560,
+      "period": 37,
+      "k": 1.3,
+      "duration": null,
+      "rate": null,
+      "cumulative": null
+    },
+    "dropout": {
+      "model": "exponential",
+      "probability": 0.05,
+      "window": 12,
+      "applies_to": "all"
+    },
+    "strata": {
+      "enabled": false,
+      "definitions": null
+    },
+    "sim": {
+      "enabled": true,
+      "n_sim": 10000,
+      "seed": 1,
+      "param_grid": null,
+      "outcome_models": {
+        "PFS": {
+          "distributions": {
+            "control": {
+              "family": "piecewise-exponential",
+              "cut": {
+                "by": "follow-up-time",
+                "at": [
+                  0,
+                  21
+                ]
+              },
+              "rate": null,
+              "median": [
+                10.9,
+                27.4
+              ],
+              "landmark_time": null,
+              "landmark_value": null,
+              "mean": null,
+              "sd": null,
+              "probability": null
+            },
+            "experimental": null
+        },
+        "effects": {
+          "control": null,
+          "experimental": {
+            "vs": "control",
+            "cut": {
+              "by": "follow-up-time",
+              "at": [
+                0,
+                6
+              ]
+            },
+            "value": [
+              0.65,
+              0.65
+            ]
+          }
+        }
+        }
+      },
+      "empirical_quantities": [
+        {
+          "label": "mean-participant-count",
+          "summary": {
+            "fn": "mean",
+            "expression": {
+              "hypothesis_id": "H_PFS",
+              "quantity": "participant-count"
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "mean-event-count",
+          "summary": {
+            "fn": "mean",
+            "expression": {
+              "hypothesis_id": "H_PFS",
+              "quantity": "event-count"
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "mean-observed-effect",
+          "summary": {
+            "fn": "mean",
+            "expression": {
+              "hypothesis_id": "H_PFS",
+              "quantity": "observed-effect-measure"
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "observed-effect-interval",
+          "summary": {
+            "fn": "quantile",
+            "expression": {
+              "hypothesis_id": "H_PFS",
+              "quantity": "observed-effect-measure"
+            },
+            "probabilities": [
+              0.025,
+              0.975
+            ]
+          }
+        },
+        {
+          "label": "power",
+          "summary": {
+            "fn": "probability",
+            "expression": {
+              "$ref": "#/gsd/H_PFS/efficacy"
+            },
+            "probabilities": null
+          }
+        }
+      ]
+    }
+  },
+  "mtp": {
+    "procedure": {
+      "type": "none",
+      "strategy": null,
+      "epsilon": null
+    },
+    "intersection_tests": null,
+    "nodes": {
+      "H_PFS": {
+        "label": "Experimental vs control: PFS",
+        "intervention": "experimental",
+        "comparator": "control",
+        "endpoint": "PFS",
+        "initial_alpha": 0.04,
+        "test_sides": 2
+      }
+    },
+    "edges": []
+  },
+  "gsd": {
+    "H_PFS": {
+      "looks": {
+        "trigger": "calendar-time",
+        "schedule": {
+          "scale": "calendar-time",
+          "values": [
+            22.8,
+            37,
+            47.9
+          ]
+        }
+      },
+      "max_events": null,
+      "efficacy": {
+        "enabled": true,
+        "type": "alpha-spending",
+        "family": {
+          "fn": "sfLDOF",
+          "param": null,
+          "nominal_values": null
+        },
+        "active_at": [
+          2,
+          3
+        ]
+      },
+      "beta": null,
+      "futility": {
+        "enabled": false,
+        "binding": null,
+        "type": null,
+        "family": {
+          "fn": null,
+          "param": null,
+          "nominal_values": null
+        },
+        "threshold_rule": {
+          "metric": null,
+          "threshold": null,
+          "direction": null
+        },
+        "active_at": null
+      },
+      "approximation": "simulation",
+      "engine": "simulation"
+    }
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "trial": {
+    "label": "Two-arm iDFS sample-size quality-control calculation",
+    "alpha": {
+      "value": 0.025,
+      "sidedness": 1
+    },
+    "arms": {
+      "arm1": {
+        "role": "control",
+        "component_of": null,
+        "randomization_weight": 1
+      },
+      "arm2": {
+        "role": "experimental",
+        "component_of": null,
+        "randomization_weight": 1
+      }
+    },
+    "endpoints": {
+      "iDFS": {
+        "type": "time-to-event",
+        "effect_measure": "hazard-ratio",
+        "benefit_direction": "lower",
+        "test": {
+          "method": "logrank",
+          "effect_estimator": null,
+          "alternative": "one-sided",
+          "stratified": false,
+          "equal_variance": null,
+          "continuity_correction": null
+        },
+        "distributions": {
+          "arm1": {
+            "family": "landmark-survival",
+            "cut": null,
+            "rate": null,
+            "median": null,
+            "landmark_time": [
+              0,
+              12,
+              24,
+              36,
+              48
+            ],
+            "landmark_value": [
+              1,
+              0.825,
+              0.709,
+              0.644,
+              0.582
+            ],
+            "mean": null,
+            "sd": null,
+            "probability": null
+          },
+          "arm2": null
+        },
+        "effects": {
+          "arm1": null,
+          "arm2": {
+            "vs": "arm1",
+            "cut": {
+              "by": "follow-up-time",
+              "at": null
+            },
+            "value": 0.645
+          }
+        }
+      }
+    },
+    "enrollment": {
+      "model": null,
+      "n_accrual_max": null,
+      "period": null,
+      "k": null,
+      "duration": null,
+      "rate": null,
+      "cumulative": null
+    },
+    "dropout": {
+      "model": "exponential",
+      "probability": 0.05,
+      "window": 12,
+      "applies_to": "all"
+    },
+    "strata": {
+      "enabled": false,
+      "definitions": null
+    },
+    "sim": {
+      "enabled": false,
+      "n_sim": null,
+      "seed": null,
+      "param_grid": null,
+      "outcome_models": null,
+      "empirical_quantities": null
+    }
+  },
+  "mtp": {
+    "procedure": {
+      "type": "none",
+      "strategy": null,
+      "epsilon": null
+    },
+    "intersection_tests": null,
+    "nodes": {
+      "H1": {
+        "label": "iDFS sample-size assessment",
+        "intervention": "arm2",
+        "comparator": "arm1",
+        "endpoint": "iDFS",
+        "initial_alpha": 0.025,
+        "test_sides": 1
+      }
+    },
+    "edges": []
+  },
+  "gsd": {
+    "H1": {
+      "looks": {
+        "trigger": "information-fraction",
+        "schedule": {
+          "scale": "information-fraction",
+          "values": [
+            0.7,
+            1
+          ]
+        }
+      },
+      "max_events": null,
+      "efficacy": {
+        "enabled": true,
+        "type": "alpha-spending",
+        "family": {
+          "fn": "sfLDOF",
+          "param": null,
+          "nominal_values": null
+        },
+        "active_at": [
+          1,
+          2
+        ]
+      },
+      "beta": 0.056,
+      "futility": {
+        "enabled": false,
+        "binding": null,
+        "type": null,
+        "family": {
+          "fn": null,
+          "param": null,
+          "nominal_values": null
+        },
+        "threshold_rule": {
+          "metric": null,
+          "threshold": null,
+          "direction": null
+        },
+        "active_at": null
+      },
+      "approximation": "Schoenfeld",
+      "engine": "rpact"
+    }
+  }
+}

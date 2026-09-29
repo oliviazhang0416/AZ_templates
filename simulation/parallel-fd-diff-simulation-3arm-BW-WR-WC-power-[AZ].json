@@ -1,0 +1,803 @@
+{
+  "trial": {
+    "label": "Three-arm non-oncology simulation: parallel dose hierarchies",
+    "alpha": {
+      "value": 0.05,
+      "sidedness": 2
+    },
+    "arms": {
+      "placebo": {
+        "role": "control",
+        "component_of": null,
+        "randomization_weight": 1
+      },
+      "high_dose": {
+        "role": "experimental",
+        "component_of": null,
+        "randomization_weight": 1
+      },
+      "low_dose": {
+        "role": "experimental",
+        "component_of": null,
+        "randomization_weight": 1
+      }
+    },
+    "endpoints": {
+      "body_weight": {
+        "type": "continuous",
+        "effect_measure": "mean-difference",
+        "benefit_direction": "lower",
+        "test": {
+          "method": "t-test",
+          "effect_estimator": null,
+          "alternative": "two-sided",
+          "stratified": false,
+          "equal_variance": true,
+          "continuity_correction": null
+        },
+        "distributions": {
+          "placebo": null,
+          "high_dose": null,
+          "low_dose": null
+        },
+        "effects": {
+          "placebo": null,
+          "high_dose": null,
+          "low_dose": null
+        }
+      },
+      "weight_loss_5pct": {
+        "type": "binary",
+        "effect_measure": "risk-difference",
+        "benefit_direction": "higher",
+        "test": {
+          "method": "chi-square",
+          "effect_estimator": null,
+          "alternative": "two-sided",
+          "stratified": false,
+          "equal_variance": null,
+          "continuity_correction": false
+        },
+        "distributions": {
+          "placebo": null,
+          "high_dose": null,
+          "low_dose": null
+        },
+        "effects": {
+          "placebo": null,
+          "high_dose": null,
+          "low_dose": null
+        }
+      },
+      "weight_loss_10pct": {
+        "type": "binary",
+        "effect_measure": "risk-difference",
+        "benefit_direction": "higher",
+        "test": {
+          "method": "chi-square",
+          "effect_estimator": null,
+          "alternative": "two-sided",
+          "stratified": false,
+          "equal_variance": null,
+          "continuity_correction": false
+        },
+        "distributions": {
+          "placebo": null,
+          "high_dose": null,
+          "low_dose": null
+        },
+        "effects": {
+          "placebo": null,
+          "high_dose": null,
+          "low_dose": null
+        }
+      },
+      "waist": {
+        "type": "continuous",
+        "effect_measure": "mean-difference",
+        "benefit_direction": "lower",
+        "test": {
+          "method": "t-test",
+          "effect_estimator": null,
+          "alternative": "two-sided",
+          "stratified": false,
+          "equal_variance": true,
+          "continuity_correction": null
+        },
+        "distributions": {
+          "placebo": null,
+          "high_dose": null,
+          "low_dose": null
+        },
+        "effects": {
+          "placebo": null,
+          "high_dose": {
+            "vs": "placebo",
+            "cut": null,
+            "value": -5
+          },
+          "low_dose": {
+            "vs": "placebo",
+            "cut": null,
+            "value": -5
+          }
+        }
+      }
+    },
+    "enrollment": {
+      "model": null,
+      "n_accrual_max": null,
+      "period": null,
+      "k": null,
+      "duration": null,
+      "rate": null,
+      "cumulative": null
+    },
+    "dropout": {
+      "model": null,
+      "probability": null,
+      "window": null,
+      "applies_to": null
+    },
+    "strata": {
+      "enabled": true,
+      "definitions": {
+        "T2D-negative": {
+          "values": {
+            "T2D": "negative"
+          },
+          "proportion": 0.8
+        },
+        "T2D-positive": {
+          "values": {
+            "T2D": "positive"
+          },
+          "proportion": 0.2
+        }
+      }
+    },
+    "sim": {
+      "enabled": true,
+      "n_sim": 10000,
+      "seed": 2026,
+      "param_grid": [
+        {
+          "parameter": "enrollment-per-arm",
+          "values": [
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100
+          ]
+        }
+      ],
+      "outcome_models": {
+        "body_weight": {
+          "distributions": {
+            "placebo": {
+              "family": "normal",
+              "cut": null,
+              "rate": null,
+              "median": null,
+              "landmark_time": null,
+              "landmark_value": null,
+              "mean": -0.02,
+              "sd": 0.1,
+              "probability": null
+            },
+            "high_dose": {
+              "T2D-negative": {
+                "family": "normal",
+                "cut": null,
+                "rate": null,
+                "median": null,
+                "landmark_time": null,
+                "landmark_value": null,
+                "mean": -0.105,
+                "sd": 0.1,
+                "probability": null
+              },
+              "T2D-positive": {
+                "family": "normal",
+                "cut": null,
+                "rate": null,
+                "median": null,
+                "landmark_time": null,
+                "landmark_value": null,
+                "mean": -0.085,
+                "sd": 0.1,
+                "probability": null
+              }
+            },
+            "low_dose": {
+              "T2D-negative": {
+                "family": "normal",
+                "cut": null,
+                "rate": null,
+                "median": null,
+                "landmark_time": null,
+                "landmark_value": null,
+                "mean": -0.087,
+                "sd": 0.1,
+                "probability": null
+              },
+              "T2D-positive": {
+                "family": "normal",
+                "cut": null,
+                "rate": null,
+                "median": null,
+                "landmark_time": null,
+                "landmark_value": null,
+                "mean": -0.07,
+                "sd": 0.1,
+                "probability": null
+              }
+            }
+        },
+        "effects": {
+          "placebo": null,
+          "high_dose": null,
+          "low_dose": null
+          }
+        },
+        "weight_loss_5pct": {
+          "distributions": {
+            "placebo": {
+              "family": "derived-bernoulli",
+              "derived_from": "body_weight",
+              "threshold_rule": {
+                "operator": "<",
+                "value": -0.05
+              }
+            },
+            "high_dose": {
+              "family": "derived-bernoulli",
+              "derived_from": "body_weight",
+              "threshold_rule": {
+                "operator": "<",
+                "value": -0.05
+              }
+            },
+            "low_dose": {
+              "family": "derived-bernoulli",
+              "derived_from": "body_weight",
+              "threshold_rule": {
+                "operator": "<",
+                "value": -0.05
+              }
+            }
+        },
+        "effects": {
+          "placebo": null,
+          "high_dose": null,
+          "low_dose": null
+          }
+        },
+        "weight_loss_10pct": {
+          "distributions": {
+            "placebo": {
+              "family": "derived-bernoulli",
+              "derived_from": "body_weight",
+              "threshold_rule": {
+                "operator": "<",
+                "value": -0.1
+              }
+            },
+            "high_dose": {
+              "family": "derived-bernoulli",
+              "derived_from": "body_weight",
+              "threshold_rule": {
+                "operator": "<",
+                "value": -0.1
+              }
+            },
+            "low_dose": {
+              "family": "derived-bernoulli",
+              "derived_from": "body_weight",
+              "threshold_rule": {
+                "operator": "<",
+                "value": -0.1
+              }
+            }
+        },
+        "effects": {
+          "placebo": null,
+          "high_dose": null,
+          "low_dose": null
+          }
+        },
+        "waist": {
+          "distributions": {
+            "placebo": {
+              "family": "normal",
+              "cut": null,
+              "rate": null,
+              "median": null,
+              "landmark_time": null,
+              "landmark_value": null,
+              "mean": 0,
+              "sd": 5,
+              "probability": null
+            },
+            "high_dose": null,
+            "low_dose": null
+        },
+        "effects": {
+          "placebo": null,
+          "high_dose": {
+            "vs": "placebo",
+            "cut": null,
+            "value": -5
+          },
+          "low_dose": {
+            "vs": "placebo",
+            "cut": null,
+            "value": -5
+          }
+        }
+        }
+      },
+      "empirical_quantities": [
+        {
+          "label": "power-high-body-weight",
+          "summary": {
+            "fn": "probability",
+            "expression": {
+              "hypothesis_id": "H_high_body_weight",
+              "quantity": "p-value",
+              "direction": "<=",
+              "threshold": "current-local-alpha"
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "power-high-5pct",
+          "summary": {
+            "fn": "probability",
+            "expression": {
+              "hypothesis_id": "H_high_5pct",
+              "quantity": "p-value",
+              "direction": "<=",
+              "threshold": "current-local-alpha"
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "power-high-any-primary",
+          "summary": {
+            "fn": "probability",
+            "expression": {
+              "any_of": [
+                {
+                  "hypothesis_id": "H_high_body_weight",
+                  "quantity": "p-value",
+                  "direction": "<=",
+                  "threshold": "current-local-alpha"
+                },
+                {
+                  "hypothesis_id": "H_high_5pct",
+                  "quantity": "p-value",
+                  "direction": "<=",
+                  "threshold": "current-local-alpha"
+                }
+              ]
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "power-high-10pct",
+          "summary": {
+            "fn": "probability",
+            "expression": {
+              "hypothesis_id": "H_high_10pct",
+              "quantity": "p-value",
+              "direction": "<=",
+              "threshold": "current-local-alpha"
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "power-high-waist",
+          "summary": {
+            "fn": "probability",
+            "expression": {
+              "hypothesis_id": "H_high_waist",
+              "quantity": "p-value",
+              "direction": "<=",
+              "threshold": "current-local-alpha"
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "power-low-body-weight",
+          "summary": {
+            "fn": "probability",
+            "expression": {
+              "hypothesis_id": "H_low_body_weight",
+              "quantity": "p-value",
+              "direction": "<=",
+              "threshold": "current-local-alpha"
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "power-low-5pct",
+          "summary": {
+            "fn": "probability",
+            "expression": {
+              "hypothesis_id": "H_low_5pct",
+              "quantity": "p-value",
+              "direction": "<=",
+              "threshold": "current-local-alpha"
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "power-low-any-primary",
+          "summary": {
+            "fn": "probability",
+            "expression": {
+              "any_of": [
+                {
+                  "hypothesis_id": "H_low_body_weight",
+                  "quantity": "p-value",
+                  "direction": "<=",
+                  "threshold": "current-local-alpha"
+                },
+                {
+                  "hypothesis_id": "H_low_5pct",
+                  "quantity": "p-value",
+                  "direction": "<=",
+                  "threshold": "current-local-alpha"
+                }
+              ]
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "power-low-10pct",
+          "summary": {
+            "fn": "probability",
+            "expression": {
+              "hypothesis_id": "H_low_10pct",
+              "quantity": "p-value",
+              "direction": "<=",
+              "threshold": "current-local-alpha"
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "power-low-waist",
+          "summary": {
+            "fn": "probability",
+            "expression": {
+              "hypothesis_id": "H_low_waist",
+              "quantity": "p-value",
+              "direction": "<=",
+              "threshold": "current-local-alpha"
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "overall-high-dose-power",
+          "summary": {
+            "fn": "probability",
+            "expression": {
+              "all_of": [
+                {
+                  "any_of": [
+                    {
+                      "hypothesis_id": "H_high_body_weight",
+                      "quantity": "p-value",
+                      "direction": "<=",
+                      "threshold": "current-local-alpha"
+                    },
+                    {
+                      "hypothesis_id": "H_high_5pct",
+                      "quantity": "p-value",
+                      "direction": "<=",
+                      "threshold": "current-local-alpha"
+                    }
+                  ]
+                },
+                {
+                  "hypothesis_id": "H_high_10pct",
+                  "quantity": "p-value",
+                  "direction": "<=",
+                  "threshold": "current-local-alpha"
+                },
+                {
+                  "hypothesis_id": "H_high_waist",
+                  "quantity": "p-value",
+                  "direction": "<=",
+                  "threshold": "current-local-alpha"
+                }
+              ]
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "overall-low-dose-power",
+          "summary": {
+            "fn": "probability",
+            "expression": {
+              "all_of": [
+                {
+                  "any_of": [
+                    {
+                      "hypothesis_id": "H_low_body_weight",
+                      "quantity": "p-value",
+                      "direction": "<=",
+                      "threshold": "current-local-alpha"
+                    },
+                    {
+                      "hypothesis_id": "H_low_5pct",
+                      "quantity": "p-value",
+                      "direction": "<=",
+                      "threshold": "current-local-alpha"
+                    }
+                  ]
+                },
+                {
+                  "hypothesis_id": "H_low_10pct",
+                  "quantity": "p-value",
+                  "direction": "<=",
+                  "threshold": "current-local-alpha"
+                },
+                {
+                  "hypothesis_id": "H_low_waist",
+                  "quantity": "p-value",
+                  "direction": "<=",
+                  "threshold": "current-local-alpha"
+                }
+              ]
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "overall-both-doses-power",
+          "summary": {
+            "fn": "probability",
+            "expression": {
+              "all_of": [
+                {
+                  "all_of": [
+                    {
+                      "any_of": [
+                        {
+                          "hypothesis_id": "H_high_body_weight",
+                          "quantity": "p-value",
+                          "direction": "<=",
+                          "threshold": "current-local-alpha"
+                        },
+                        {
+                          "hypothesis_id": "H_high_5pct",
+                          "quantity": "p-value",
+                          "direction": "<=",
+                          "threshold": "current-local-alpha"
+                        }
+                      ]
+                    },
+                    {
+                      "hypothesis_id": "H_high_10pct",
+                      "quantity": "p-value",
+                      "direction": "<=",
+                      "threshold": "current-local-alpha"
+                    },
+                    {
+                      "hypothesis_id": "H_high_waist",
+                      "quantity": "p-value",
+                      "direction": "<=",
+                      "threshold": "current-local-alpha"
+                    }
+                  ]
+                },
+                {
+                  "all_of": [
+                    {
+                      "any_of": [
+                        {
+                          "hypothesis_id": "H_low_body_weight",
+                          "quantity": "p-value",
+                          "direction": "<=",
+                          "threshold": "current-local-alpha"
+                        },
+                        {
+                          "hypothesis_id": "H_low_5pct",
+                          "quantity": "p-value",
+                          "direction": "<=",
+                          "threshold": "current-local-alpha"
+                        }
+                      ]
+                    },
+                    {
+                      "hypothesis_id": "H_low_10pct",
+                      "quantity": "p-value",
+                      "direction": "<=",
+                      "threshold": "current-local-alpha"
+                    },
+                    {
+                      "hypothesis_id": "H_low_waist",
+                      "quantity": "p-value",
+                      "direction": "<=",
+                      "threshold": "current-local-alpha"
+                    }
+                  ]
+                }
+              ]
+            },
+            "probabilities": null
+          }
+        }
+      ]
+    }
+  },
+  "mtp": {
+    "procedure": {
+      "type": "graphical",
+      "strategy": "parallel-hierarchies",
+      "epsilon": null
+    },
+    "intersection_tests": null,
+    "nodes": {
+      "H_high_body_weight": {
+        "label": "High dose vs placebo: body-weight percent change",
+        "intervention": "high_dose",
+        "comparator": "placebo",
+        "endpoint": "body_weight",
+        "initial_alpha": 0.0125,
+        "test_sides": 2
+      },
+      "H_high_5pct": {
+        "label": "High dose vs placebo: at least 5 percent weight loss",
+        "intervention": "high_dose",
+        "comparator": "placebo",
+        "endpoint": "weight_loss_5pct",
+        "initial_alpha": 0.0125,
+        "test_sides": 2
+      },
+      "H_high_10pct": {
+        "label": "High dose vs placebo: at least 10 percent weight loss",
+        "intervention": "high_dose",
+        "comparator": "placebo",
+        "endpoint": "weight_loss_10pct",
+        "initial_alpha": 0,
+        "test_sides": 2
+      },
+      "H_high_waist": {
+        "label": "High dose vs placebo: waist-circumference change",
+        "intervention": "high_dose",
+        "comparator": "placebo",
+        "endpoint": "waist",
+        "initial_alpha": 0,
+        "test_sides": 2
+      },
+      "H_low_body_weight": {
+        "label": "Low dose vs placebo: body-weight percent change",
+        "intervention": "low_dose",
+        "comparator": "placebo",
+        "endpoint": "body_weight",
+        "initial_alpha": 0.0125,
+        "test_sides": 2
+      },
+      "H_low_5pct": {
+        "label": "Low dose vs placebo: at least 5 percent weight loss",
+        "intervention": "low_dose",
+        "comparator": "placebo",
+        "endpoint": "weight_loss_5pct",
+        "initial_alpha": 0.0125,
+        "test_sides": 2
+      },
+      "H_low_10pct": {
+        "label": "Low dose vs placebo: at least 10 percent weight loss",
+        "intervention": "low_dose",
+        "comparator": "placebo",
+        "endpoint": "weight_loss_10pct",
+        "initial_alpha": 0,
+        "test_sides": 2
+      },
+      "H_low_waist": {
+        "label": "Low dose vs placebo: waist-circumference change",
+        "intervention": "low_dose",
+        "comparator": "placebo",
+        "endpoint": "waist",
+        "initial_alpha": 0,
+        "test_sides": 2
+      }
+    },
+    "edges": [
+      {
+        "from": "H_high_body_weight",
+        "to": "H_high_10pct",
+        "weight": 1,
+        "on": "reject",
+        "condition": null
+      },
+      {
+        "from": "H_high_5pct",
+        "to": "H_high_10pct",
+        "weight": 1,
+        "on": "reject",
+        "condition": null
+      },
+      {
+        "from": "H_high_10pct",
+        "to": "H_high_waist",
+        "weight": 1,
+        "on": "reject",
+        "condition": null
+      },
+      {
+        "from": "H_high_waist",
+        "to": "H_low_body_weight",
+        "weight": 0.5,
+        "on": "reject",
+        "condition": null
+      },
+      {
+        "from": "H_high_waist",
+        "to": "H_low_5pct",
+        "weight": 0.5,
+        "on": "reject",
+        "condition": null
+      },
+      {
+        "from": "H_low_body_weight",
+        "to": "H_low_10pct",
+        "weight": 1,
+        "on": "reject",
+        "condition": null
+      },
+      {
+        "from": "H_low_5pct",
+        "to": "H_low_10pct",
+        "weight": 1,
+        "on": "reject",
+        "condition": null
+      },
+      {
+        "from": "H_low_10pct",
+        "to": "H_low_waist",
+        "weight": 1,
+        "on": "reject",
+        "condition": null
+      },
+      {
+        "from": "H_low_waist",
+        "to": "H_high_body_weight",
+        "weight": 0.5,
+        "on": "reject",
+        "condition": null
+      },
+      {
+        "from": "H_low_waist",
+        "to": "H_high_5pct",
+        "weight": 0.5,
+        "on": "reject",
+        "condition": null
+      }
+    ]
+  },
+  "gsd": {}
+}

@@ -1,0 +1,445 @@
+{
+  "trial": {
+    "label": "Three-arm EFS and OS design with Dunnett adjustment",
+    "alpha": {
+      "value": 0.05,
+      "sidedness": 2
+    },
+    "arms": {
+      "arm1": {
+        "role": "control",
+        "component_of": null,
+        "randomization_weight": 1
+      },
+      "arm2": {
+        "role": "experimental",
+        "component_of": null,
+        "randomization_weight": 1
+      },
+      "arm3": {
+        "role": "experimental",
+        "component_of": null,
+        "randomization_weight": 1
+      }
+    },
+    "endpoints": {
+      "EFS": {
+        "type": "time-to-event",
+        "effect_measure": "hazard-ratio",
+        "benefit_direction": "lower",
+        "test": {
+          "method": "logrank",
+          "effect_estimator": null,
+          "alternative": "two-sided",
+          "stratified": false,
+          "equal_variance": null,
+          "continuity_correction": null
+        },
+        "distributions": {
+          "arm1": {
+            "family": "piecewise-exponential",
+            "cut": {
+              "by": "follow-up-time",
+              "at": [
+                0,
+                24
+              ]
+            },
+            "rate": [
+              0.0389,
+              0.0128
+            ],
+            "median": null,
+            "landmark_time": null,
+            "landmark_value": null,
+            "mean": null,
+            "sd": null,
+            "probability": null
+          },
+          "arm2": null,
+          "arm3": null
+        },
+        "effects": {
+          "arm1": null,
+          "arm2": {
+            "vs": "arm1",
+            "cut": {
+              "by": "follow-up-time",
+              "at": null
+            },
+            "value": 0.6
+          },
+          "arm3": {
+            "vs": "arm1",
+            "cut": {
+              "by": "follow-up-time",
+              "at": null
+            },
+            "value": 0.65
+          }
+        }
+      },
+      "OS": {
+        "type": "time-to-event",
+        "effect_measure": "hazard-ratio",
+        "benefit_direction": "lower",
+        "test": {
+          "method": "logrank",
+          "effect_estimator": null,
+          "alternative": "two-sided",
+          "stratified": false,
+          "equal_variance": null,
+          "continuity_correction": null
+        },
+        "distributions": {
+          "arm1": {
+            "family": "exponential",
+            "cut": null,
+            "rate": null,
+            "median": 40,
+            "landmark_time": null,
+            "landmark_value": null,
+            "mean": null,
+            "sd": null,
+            "probability": null
+          },
+          "arm2": null,
+          "arm3": null
+        },
+        "effects": {
+          "arm1": null,
+          "arm2": {
+            "vs": "arm1",
+            "cut": {
+              "by": "follow-up-time",
+              "at": null
+            },
+            "value": 0.6
+          },
+          "arm3": {
+            "vs": "arm1",
+            "cut": {
+              "by": "follow-up-time",
+              "at": null
+            },
+            "value": 0.7
+          }
+        }
+      }
+    },
+    "enrollment": {
+      "model": null,
+      "n_accrual_max": null,
+      "period": null,
+      "k": null,
+      "duration": null,
+      "rate": null,
+      "cumulative": null
+    },
+    "dropout": {
+      "model": null,
+      "probability": null,
+      "window": null,
+      "applies_to": null
+    },
+    "strata": {
+      "enabled": false,
+      "definitions": null
+    },
+    "sim": {
+      "enabled": false,
+      "n_sim": null,
+      "seed": null,
+      "param_grid": null,
+      "outcome_models": null,
+      "empirical_quantities": null
+    }
+  },
+  "mtp": {
+    "procedure": {
+      "type": "graphical",
+      "strategy": "hybrid",
+      "epsilon": 0.0001
+    },
+    "intersection_tests": {
+      "H12": {
+        "hypotheses": [
+          "H1",
+          "H2"
+        ],
+        "type": "dunnett",
+        "correlation": [
+          [
+            1,
+            0.5
+          ],
+          [
+            0.5,
+            1
+          ]
+        ]
+      }
+    },
+    "nodes": {
+      "H1": {
+        "label": "EFS: Arm 2 vs control",
+        "intervention": "arm2",
+        "comparator": "arm1",
+        "endpoint": "EFS",
+        "initial_alpha": 0.025,
+        "test_sides": 2
+      },
+      "H2": {
+        "label": "EFS: Arm 3 vs control",
+        "intervention": "arm3",
+        "comparator": "arm1",
+        "endpoint": "EFS",
+        "initial_alpha": 0.025,
+        "test_sides": 2
+      },
+      "H3": {
+        "label": "OS: Arm 2 vs control",
+        "intervention": "arm2",
+        "comparator": "arm1",
+        "endpoint": "OS",
+        "initial_alpha": 0,
+        "test_sides": 2
+      },
+      "H4": {
+        "label": "OS: Arm 3 vs control",
+        "intervention": "arm3",
+        "comparator": "arm1",
+        "endpoint": "OS",
+        "initial_alpha": 0,
+        "test_sides": 2
+      }
+    },
+    "edges": [
+      {
+        "from": "H1",
+        "to": "H2",
+        "weight": 0.9999,
+        "on": "reject",
+        "condition": null
+      },
+      {
+        "from": "H1",
+        "to": "H3",
+        "weight": 0.0001,
+        "on": "reject",
+        "condition": null
+      },
+      {
+        "from": "H2",
+        "to": "H1",
+        "weight": 0.9999,
+        "on": "reject",
+        "condition": null
+      },
+      {
+        "from": "H2",
+        "to": "H3",
+        "weight": 0.0001,
+        "on": "reject",
+        "condition": null
+      },
+      {
+        "from": "H3",
+        "to": "H4",
+        "weight": 1,
+        "on": "reject",
+        "condition": null
+      }
+    ]
+  },
+  "gsd": {
+    "H1": {
+      "looks": {
+        "trigger": "information-fraction",
+        "schedule": {
+          "scale": "information-fraction",
+          "values": [
+            0.8,
+            1
+          ]
+        }
+      },
+      "max_events": null,
+      "efficacy": {
+        "enabled": true,
+        "type": "alpha-spending",
+        "family": {
+          "fn": "sfLDOF",
+          "param": null,
+          "nominal_values": null
+        },
+        "active_at": [
+          1,
+          2
+        ]
+      },
+      "beta": 0.1,
+      "futility": {
+        "enabled": false,
+        "binding": null,
+        "type": null,
+        "family": {
+          "fn": null,
+          "param": null,
+          "nominal_values": null
+        },
+        "threshold_rule": {
+          "metric": null,
+          "threshold": null,
+          "direction": null
+        },
+        "active_at": null
+      },
+      "approximation": "Schoenfeld",
+      "engine": "rpact"
+    },
+    "H2": {
+      "looks": {
+        "trigger": "information-fraction",
+        "schedule": {
+          "scale": "information-fraction",
+          "values": [
+            0.9,
+            1
+          ]
+        }
+      },
+      "max_events": null,
+      "efficacy": {
+        "enabled": true,
+        "type": "alpha-spending",
+        "family": {
+          "fn": "sfLDOF",
+          "param": null,
+          "nominal_values": null
+        },
+        "active_at": [
+          1,
+          2
+        ]
+      },
+      "beta": 0.2,
+      "futility": {
+        "enabled": false,
+        "binding": null,
+        "type": null,
+        "family": {
+          "fn": null,
+          "param": null,
+          "nominal_values": null
+        },
+        "threshold_rule": {
+          "metric": null,
+          "threshold": null,
+          "direction": null
+        },
+        "active_at": null
+      },
+      "approximation": "Schoenfeld",
+      "engine": "rpact"
+    },
+    "H3": {
+      "looks": {
+        "trigger": "information-fraction",
+        "schedule": {
+          "scale": "information-fraction",
+          "values": [
+            0.4,
+            0.7,
+            0.8,
+            1
+          ]
+        }
+      },
+      "max_events": null,
+      "efficacy": {
+        "enabled": true,
+        "type": "alpha-spending",
+        "family": {
+          "fn": "sfHSD",
+          "param": -3,
+          "nominal_values": null
+        },
+        "active_at": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "beta": 0.1,
+      "futility": {
+        "enabled": false,
+        "binding": null,
+        "type": null,
+        "family": {
+          "fn": null,
+          "param": null,
+          "nominal_values": null
+        },
+        "threshold_rule": {
+          "metric": null,
+          "threshold": null,
+          "direction": null
+        },
+        "active_at": null
+      },
+      "approximation": "Schoenfeld",
+      "engine": "rpact"
+    },
+    "H4": {
+      "looks": {
+        "trigger": "information-fraction",
+        "schedule": {
+          "scale": "information-fraction",
+          "values": [
+            0.5,
+            0.7,
+            0.8,
+            1
+          ]
+        }
+      },
+      "max_events": null,
+      "efficacy": {
+        "enabled": true,
+        "type": "alpha-spending",
+        "family": {
+          "fn": "sfHSD",
+          "param": -3,
+          "nominal_values": null
+        },
+        "active_at": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "beta": 0.2,
+      "futility": {
+        "enabled": false,
+        "binding": null,
+        "type": null,
+        "family": {
+          "fn": null,
+          "param": null,
+          "nominal_values": null
+        },
+        "threshold_rule": {
+          "metric": null,
+          "threshold": null,
+          "direction": null
+        },
+        "active_at": null
+      },
+      "approximation": "Schoenfeld",
+      "engine": "rpact"
+    }
+  }
+}

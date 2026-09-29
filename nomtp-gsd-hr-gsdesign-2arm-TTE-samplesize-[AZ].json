@@ -1,0 +1,144 @@
+{
+  "trial": {
+    "label": "Two-arm time-to-event event-size",
+    "alpha": {
+      "value": 0.05,
+      "sidedness": 2
+    },
+    "arms": {
+      "control": {
+        "role": "control",
+        "component_of": null,
+        "randomization_weight": 1
+      },
+      "experimental": {
+        "role": "experimental",
+        "component_of": null,
+        "randomization_weight": 1
+      }
+    },
+    "endpoints": {
+      "TTE": {
+        "type": "time-to-event",
+        "effect_measure": "hazard-ratio",
+        "benefit_direction": "lower",
+        "test": {
+          "method": "logrank",
+          "effect_estimator": null,
+          "alternative": "two-sided",
+          "stratified": false,
+          "equal_variance": null,
+          "continuity_correction": null
+        },
+        "distributions": {
+          "control": null,
+          "experimental": null
+        },
+        "effects": {
+          "control": null,
+          "experimental": {
+            "vs": "control",
+            "cut": {
+              "by": "follow-up-time",
+              "at": null
+            },
+            "value": 0.645
+          }
+        }
+      }
+    },
+    "enrollment": {
+      "model": null,
+      "n_accrual_max": null,
+      "period": null,
+      "k": null,
+      "duration": null,
+      "rate": null,
+      "cumulative": null
+    },
+    "dropout": {
+      "model": null,
+      "probability": null,
+      "window": null,
+      "applies_to": null
+    },
+    "strata": {
+      "enabled": false,
+      "definitions": null
+    },
+    "sim": {
+      "enabled": false,
+      "n_sim": null,
+      "seed": null,
+      "param_grid": null,
+      "outcome_models": null,
+      "empirical_quantities": null
+    }
+  },
+  "mtp": {
+    "procedure": {
+      "type": "none",
+      "strategy": null,
+      "epsilon": null
+    },
+    "intersection_tests": null,
+    "nodes": {
+      "H_TTE": {
+        "label": "Experimental versus control",
+        "intervention": "experimental",
+        "comparator": "control",
+        "endpoint": "TTE",
+        "initial_alpha": 0.05,
+        "test_sides": 2
+      }
+    },
+    "edges": []
+  },
+  "gsd": {
+    "H_TTE": {
+      "looks": {
+        "trigger": "information-fraction",
+        "schedule": {
+          "scale": "information-fraction",
+          "values": [
+            0.7,
+            1
+          ]
+        }
+      },
+      "max_events": null,
+      "efficacy": {
+        "enabled": true,
+        "type": "alpha-spending",
+        "family": {
+          "fn": "sfLDOF",
+          "param": null,
+          "nominal_values": null
+        },
+        "active_at": [
+          1,
+          2
+        ]
+      },
+      "beta": 0.056,
+      "futility": {
+        "enabled": false,
+        "binding": null,
+        "type": null,
+        "family": {
+          "fn": null,
+          "param": null,
+          "nominal_values": null
+        },
+        "threshold_rule": {
+          "metric": null,
+          "threshold": null,
+          "direction": null
+        },
+        "active_at": null
+      },
+      "approximation": "Schoenfeld",
+      "engine": "gsDesign"
+    }
+  }
+}

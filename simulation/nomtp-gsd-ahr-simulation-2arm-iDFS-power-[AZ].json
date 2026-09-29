@@ -1,0 +1,360 @@
+{
+  "trial": {
+    "label": "Two-arm iDFS simulation-based AHR and power characterization",
+    "alpha": {
+      "value": 0.05,
+      "sidedness": 2
+    },
+    "arms": {
+      "control": {
+        "role": "control",
+        "component_of": null,
+        "randomization_weight": 1
+      },
+      "experimental": {
+        "role": "experimental",
+        "component_of": null,
+        "randomization_weight": 2
+      }
+    },
+    "endpoints": {
+      "iDFS": {
+        "type": "time-to-event",
+        "effect_measure": "hazard-ratio",
+        "benefit_direction": "lower",
+        "test": {
+          "method": "logrank",
+          "effect_estimator": "coxph",
+          "alternative": "two-sided",
+          "stratified": false,
+          "equal_variance": null,
+          "continuity_correction": null
+        },
+        "distributions": {
+          "control": {
+            "family": "piecewise-exponential",
+            "cut": {
+              "by": "follow-up-time",
+              "at": [
+                0,
+                12,
+                24,
+                36
+              ]
+            },
+            "rate": [
+              0.02441914,
+              0.0249473,
+              0.01980965,
+              0.01526995
+            ],
+            "median": null,
+            "landmark_time": null,
+            "landmark_value": null,
+            "mean": null,
+            "sd": null,
+            "probability": null
+          },
+          "experimental": {
+            "family": "piecewise-exponential",
+            "cut": {
+              "by": "follow-up-time",
+              "at": [
+                0,
+                12,
+                24,
+                36
+              ]
+            },
+            "rate": [
+              0.017200779,
+              0.025229249,
+              0.008996012,
+              0.026085304
+            ],
+            "median": null,
+            "landmark_time": null,
+            "landmark_value": null,
+            "mean": null,
+            "sd": null,
+            "probability": null
+          }
+        },
+        "effects": {
+          "control": null,
+          "experimental": null
+        }
+      }
+    },
+    "enrollment": {
+      "model": "power",
+      "n_accrual_max": 380,
+      "period": 37,
+      "k": 1.1,
+      "duration": null,
+      "rate": null,
+      "cumulative": null
+    },
+    "dropout": {
+      "model": "exponential",
+      "probability": 0.055,
+      "window": 12,
+      "applies_to": "all"
+    },
+    "strata": {
+      "enabled": false,
+      "definitions": null
+    },
+    "sim": {
+      "enabled": true,
+      "n_sim": 10000,
+      "seed": 1,
+      "param_grid": [
+        {
+          "parameter": "calendar-time",
+          "values": [
+            37,
+            49,
+            55,
+            61,
+            65,
+            73,
+            77,
+            85,
+            97
+          ]
+        }
+      ],
+      "outcome_models": {
+        "iDFS": {
+          "distributions": {
+            "control": {
+              "family": "piecewise-exponential",
+              "cut": {
+                "by": "follow-up-time",
+                "at": [
+                  0,
+                  12,
+                  24,
+                  36
+                ]
+              },
+              "rate": [
+                0.02441914,
+                0.0249473,
+                0.01980965,
+                0.01526995
+              ],
+              "median": null,
+              "landmark_time": null,
+              "landmark_value": null,
+              "mean": null,
+              "sd": null,
+              "probability": null
+            },
+            "experimental": {
+              "family": "piecewise-exponential",
+              "cut": {
+                "by": "follow-up-time",
+                "at": [
+                  0,
+                  12,
+                  24,
+                  36
+                ]
+              },
+              "rate": [
+                0.017200779,
+                0.025229249,
+                0.008996012,
+                0.026085304
+              ],
+              "median": null,
+              "landmark_time": null,
+              "landmark_value": null,
+              "mean": null,
+              "sd": null,
+              "probability": null
+            }
+          },
+          "effects": {
+            "control": null,
+            "experimental": null
+          }
+        }
+      },
+      "empirical_quantities": [
+        {
+          "label": "median-event-count",
+          "summary": {
+            "fn": "median",
+            "expression": {
+              "hypothesis_id": "H_iDFS",
+              "quantity": "event-count"
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "mean-event-count",
+          "summary": {
+            "fn": "mean",
+            "expression": {
+              "hypothesis_id": "H_iDFS",
+              "quantity": "event-count"
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "median-observed-effect",
+          "summary": {
+            "fn": "median",
+            "expression": {
+              "hypothesis_id": "H_iDFS",
+              "quantity": "observed-effect-measure"
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "mean-observed-effect",
+          "summary": {
+            "fn": "mean",
+            "expression": {
+              "hypothesis_id": "H_iDFS",
+              "quantity": "observed-effect-measure"
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "observed-effect-interval",
+          "summary": {
+            "fn": "quantile",
+            "expression": {
+              "hypothesis_id": "H_iDFS",
+              "quantity": "observed-effect-measure"
+            },
+            "probabilities": [
+              0.025,
+              0.975
+            ]
+          }
+        },
+        {
+          "label": "nominal-power",
+          "summary": {
+            "fn": "probability",
+            "expression": {
+              "hypothesis_id": "H_iDFS",
+              "quantity": "p-value",
+              "direction": "<",
+              "thresholds": [
+                0.019666542
+              ]
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "observed-effect-threshold-probability",
+          "summary": {
+            "fn": "probability",
+            "expression": {
+              "hypothesis_id": "H_iDFS",
+              "quantity": "observed-effect-measure",
+              "direction": "<",
+              "thresholds": [
+                0.7041418,
+                0.775,
+                0.8,
+                0.9,
+                1.0
+              ]
+            },
+            "probabilities": null
+          }
+        },
+        {
+          "label": "group-sequential-power",
+          "summary": {
+            "fn": "probability",
+            "expression": {
+              "$ref": "#/gsd/H_iDFS/efficacy"
+            },
+            "probabilities": null
+          }
+        }
+      ]
+    }
+  },
+  "mtp": {
+    "procedure": {
+      "type": "none",
+      "strategy": null,
+      "epsilon": null
+    },
+    "intersection_tests": null,
+    "nodes": {
+      "H_iDFS": {
+        "label": "Experimental vs control: iDFS",
+        "intervention": "experimental",
+        "comparator": "control",
+        "endpoint": "iDFS",
+        "initial_alpha": 0.05,
+        "test_sides": 2
+      }
+    },
+    "edges": []
+  },
+  "gsd": {
+    "H_iDFS": {
+      "looks": {
+        "trigger": "calendar-time",
+        "schedule": {
+          "scale": "calendar-time",
+          "values": [
+            65,
+            77,
+            97
+          ]
+        }
+      },
+      "max_events": null,
+      "efficacy": {
+        "enabled": true,
+        "type": "alpha-spending",
+        "family": {
+          "fn": "sfLDOF",
+          "param": null,
+          "nominal_values": null
+        },
+        "active_at": [
+          1,
+          2,
+          3
+        ]
+      },
+      "beta": null,
+      "futility": {
+        "enabled": false,
+        "binding": null,
+        "type": null,
+        "family": {
+          "fn": null,
+          "param": null,
+          "nominal_values": null
+        },
+        "threshold_rule": {
+          "metric": null,
+          "threshold": null,
+          "direction": null
+        },
+        "active_at": null
+      },
+      "approximation": "simulation",
+      "engine": "simulation"
+    }
+  }
+}
